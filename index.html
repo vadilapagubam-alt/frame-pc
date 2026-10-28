@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0a10">
+  <meta name="description" content="Frame PC — игровые компьютеры и конфигуратор ПК. Подбор сборки под бюджет и максимальный FPS.">
+  <title>Frame PC — Играй на максимуме</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Frame PC home">
+      <span class="brand-mark"><span></span><span></span><span></span></span>
+      <span>FRAME<span class="brand-light"> PC</span></span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#builds" data-i18n="navBuilds">Сборки</a>
+      <a href="#configurator" data-i18n="navConfig">Конфигуратор</a>
+      <a href="#advantages" data-i18n="navAbout">Почему Frame</a>
+    </nav>
+    <div class="top-actions">
+      <button class="language-button" id="languageToggle" aria-label="Switch language">RU <span>⌄</span></button>
+      <a class="button button-small button-outline" href="#contact" data-i18n="navContact">Связаться</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section-wrap" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span><span data-i18n="heroEyebrow">ИГРОВЫЕ ПК · FRAME PC</span></div>
+        <h1 data-i18n="heroTitle">Твой следующий<br><span class="gradient-text">уровень FPS.</span></h1>
+        <p class="hero-subtitle" data-i18n="heroText">Подбираем игровые компьютеры под твои задачи и бюджет. Никаких случайных комплектующих — только продуманные сборки.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#configurator"><span data-i18n="heroCta">Собрать свой ПК</span><span class="arrow">↗</span></a>
+          <a class="button button-ghost" href="#builds" data-i18n="heroSecondary">Выбрать готовую сборку</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>50K<span>₽</span></strong><small data-i18n="statFrom">стартовый бюджет</small></div>
+          <div><strong>100<span>%</span></strong><small data-i18n="statCheck">проверка совместимости</small></div>
+          <div><strong>FPS<span>+</span></strong><small data-i18n="statGoal">фокус на производительности</small></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="visual-glow"></div>
+        <div class="pc-card">
+          <div class="pc-card-top"><span class="tiny-label" data-i18n="featured">FEATURED BUILD</span><span class="status-pill"><span></span><span data-i18n="available">Пример сборки</span></span></div>
+          <div class="pc-render">
+            <div class="pc-case">
+              <div class="case-top"></div><div class="case-front">
+                <div class="fan fan-one"><i></i></div><div class="fan fan-two"><i></i></div><div class="fan fan-three"><i></i></div>
+              </div>
+              <div class="case-side">
+                <div class="gpu"><span>FRAME</span><i></i></div><div class="ram-stick"></div><div class="motherboard"></div>
+              </div>
+              <div class="case-base"></div>
+            </div>
+            <div class="floating-tag tag-fps"><strong>240+</strong><span>FPS READY*</span></div>
+            <div class="floating-tag tag-gpu"><span class="tag-icon">▰</span><span>GPU<br><b data-i18n="performance">Performance</b></span></div>
+          </div>
+          <div class="pc-card-bottom"><div><span data-i18n="exampleConfig">Пример конфигурации</span><strong>Ryzen 5 · RTX 5060</strong></div><span class="price">от 69 990 ₽</span></div>
+        </div>
+        <p class="visual-note" data-i18n="heroDisclaimer">*FPS зависит от игры, разрешения и настроек. Изображение — стилизованная иллюстрация.</p>
+      </div>
+    </section>
+
+    <section class="trust-strip section-wrap" id="advantages">
+      <div><span class="trust-icon">⌁</span><span data-i18n="trust1">Подбор под бюджет</span></div>
+      <div><span class="trust-icon">◈</span><span data-i18n="trust2">Проверка комплектующих</span></div>
+      <div><span class="trust-icon">↗</span><span data-i18n="trust3">Честная стоимость</span></div>
+      <div><span class="trust-icon">⌘</span><span data-i18n="trust4">Фокус на FPS</span></div>
+    </section>
+
+    <section class="section-wrap section-block" id="builds">
+      <div class="section-heading">
+        <div><div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="buildsEyebrow">ГОТОВЫЕ РЕШЕНИЯ</span></div><h2 data-i18n="buildsTitle">Выбери свой <span class="gradient-text">уровень.</span></h2><p data-i18n="buildsText">Стартовые варианты для разных бюджетов. Цены и характеристики ниже — демонстрационные, их можно заменить на реальные.</p></div>
+        <a class="text-link" href="#configurator"><span data-i18n="allBuilds">Подобрать свою сборку</span> <b>↗</b></a>
+      </div>
+      <div class="filter-row" role="group" aria-label="Фильтр сборок">
+        <button class="filter-chip active" data-filter="all" data-i18n="filterAll">Все сборки</button>
+        <button class="filter-chip" data-filter="budget" data-i18n="filterBudget">Начальный уровень</button>
+        <button class="filter-chip" data-filter="balanced" data-i18n="filterBalanced">Оптимальные</button>
+        <button class="filter-chip" data-filter="power" data-i18n="filterPower">Высокая производительность</button>
+      </div>
+      <div class="build-grid" id="buildGrid"></div>
+      <p class="demo-note"><span>ⓘ</span> <span data-i18n="demoNote">Демонстрационные цены не являются офертой. Перед публикацией укажи реальные комплектующие, стоимость и условия заказа.</span></p>
+    </section>
+
+    <section class="config-section" id="configurator">
+      <div class="section-wrap section-block">
+        <div class="section-heading">
+          <div><div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="configEyebrow">ТВОЯ КОНФИГУРАЦИЯ</span></div><h2 data-i18n="configTitle">Собери ПК <span class="gradient-text">под себя.</span></h2><p data-i18n="configText">Выбери бюджет и приоритет. Конфигуратор пересчитает стоимость демонстрационного набора.</p></div>
+          <div class="config-live"><span class="live-dot"></span><span data-i18n="configLive">Интерактивный демо-режим</span></div>
+        </div>
+        <div class="config-layout">
+          <div class="config-controls">
+            <div class="control-card">
+              <label class="control-label" for="budgetRange"><span data-i18n="budgetLabel">Бюджет</span><strong id="budgetValue">70 000 ₽</strong></label>
+              <input type="range" id="budgetRange" min="50000" max="100000" step="10000" value="70000">
+              <div class="range-labels"><span>50 000 ₽</span><span>100 000 ₽</span></div>
+            </div>
+            <div class="control-card">
+              <span class="control-label" data-i18n="priorityLabel">Главный приоритет</span>
+              <div class="priority-options">
+                <button class="priority-option selected" data-priority="fps"><span class="priority-icon">ϟ</span><span><b data-i18n="priorityFps">Максимум FPS</b><small data-i18n="priorityFpsSub">Больше кадров в играх</small></span><span class="radio-dot"></span></button>
+                <button class="priority-option" data-priority="upgrade"><span class="priority-icon">↗</span><span><b data-i18n="priorityUpgrade">Апгрейд в будущем</b><small data-i18n="priorityUpgradeSub">Платформа с запасом</small></span><span class="radio-dot"></span></button>
+                <button class="priority-option" data-priority="white"><span class="priority-icon">◐</span><span><b data-i18n="priorityWhite">Белая эстетика</b><small data-i18n="priorityWhiteSub">Стильный внешний вид</small></span><span class="radio-dot"></span></button>
+              </div>
+            </div>
+            <div class="control-card">
+              <span class="control-label" data-i18n="marketLabel">Предпочтение по деталям</span>
+              <div class="market-options">
+                <label><input type="radio" name="market" value="new" checked><span data-i18n="marketNew">Только новые</span></label>
+                <label><input type="radio" name="market" value="mixed"><span data-i18n="marketMixed">Новые + б/у видеокарта</span></label>
+              </div>
+              <p class="field-hint" data-i18n="marketHint">Пока это демонстрационный расчёт — реальные предложения ещё не подключены.</p>
+            </div>
+          </div>
+          <div class="config-result">
+            <div class="result-header"><div><span class="tiny-label" data-i18n="resultLabel">ТВОЯ СБОРКА</span><h3 id="resultName">Frame Core 70</h3></div><span class="result-badge"><span></span><span data-i18n="compatibleDemo">Демо-совместимость</span></span></div>
+            <div class="result-performance"><div class="performance-ring"><div><strong id="performanceScore">78</strong><small> / 100</small></div></div><div><span data-i18n="performanceIndex">Индекс производительности</span><p id="performanceDescription">Сбалансированная конфигурация для Full HD.</p></div></div>
+            <div class="parts-list" id="partsList"></div>
+            <div class="result-total"><div><span data-i18n="estimatedTotal">Ориентировочная стоимость</span><small data-i18n="deliveryHint">Без доставки и сборки</small></div><strong id="resultTotal">70 000 ₽</strong></div>
+            <button class="button button-primary button-full" id="requestBuild"><span data-i18n="requestBuild">Запросить эту сборку</span><span class="arrow">↗</span></button>
+            <p class="result-footnote" data-i18n="resultDisclaimer">Цены, индекс и совместимость условные. Не являются реальным предложением к покупке.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wrap section-block process-section">
+      <div class="section-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="processEyebrow">ПРОСТО И ПОНЯТНО</span></div><h2 data-i18n="processTitle">От идеи до <span class="gradient-text">игры.</span></h2></div></div>
+      <div class="steps-grid">
+        <article class="step-card"><span class="step-number">01</span><div class="step-icon">⌕</div><h3 data-i18n="step1Title">Выбираем</h3><p data-i18n="step1Text">Определяем бюджет, игры и желаемую производительность.</p></article>
+        <article class="step-card"><span class="step-number">02</span><div class="step-icon">◈</div><h3 data-i18n="step2Title">Собираем</h3><p data-i18n="step2Text">Подбираем совместимые детали и согласовываем конфигурацию.</p></article>
+        <article class="step-card"><span class="step-number">03</span><div class="step-icon">ϟ</div><h3 data-i18n="step3Title">Тестируем</h3><p data-i18n="step3Text">Проверяем работу ПК и фиксируем результат сборки.</p></article>
+        <article class="step-card"><span class="step-number">04</span><div class="step-icon">↗</div><h3 data-i18n="step4Title">Отправляем</h3><p data-i18n="step4Text">Передаём готовый компьютер и помогаем после покупки.</p></article>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="section-wrap contact-inner"><div><div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="contactEyebrow">НАЧНЁМ?</span></div><h2 data-i18n="contactTitle">Твой ПК. Твои правила.</h2><p data-i18n="contactText">Расскажи, во что играешь и какой у тебя бюджет. Поможем подобрать конфигурацию.</p></div><a class="button button-primary" id="telegramLink" href="https://t.me/framepcm" target="_blank" rel="noopener"><span data-i18n="contactCta">Написать в Telegram</span><span class="arrow">↗</span></a></div>
+    </section>
+  </main>
+
+  <footer class="footer section-wrap"><a class="brand" href="#home"><span class="brand-mark"><span></span><span></span><span></span></span><span>FRAME<span class="brand-light"> PC</span></span></a><p data-i18n="footerText">Игровые ПК с фокусом на производительности.</p><div class="footer-links"><a href="#builds" data-i18n="navBuilds">Сборки</a><a href="#configurator" data-i18n="navConfig">Конфигуратор</a><a href="#contact" data-i18n="navContact">Связаться</a></div><small>© <span id="year"></span> Frame PC. <span data-i18n="footerRights">Все права защищены.</span></small></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
