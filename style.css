@@ -30,3 +30,27 @@ img,svg,video,canvas{max-width:100%;}
   .part-info span{overflow-wrap:anywhere;}
   .result-total>strong{font-size:clamp(19px,6vw,24px);}
 }
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  body {
+    touch-action: pan-y pinch-zoom;
+  }
+}
