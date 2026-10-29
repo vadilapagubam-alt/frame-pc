@@ -82,12 +82,35 @@ function renderBuilds(){
         <div class="build-title-row"><div><h3>${b.name}</h3><span class="build-category">${b.category==="budget"?(lang==="ru"?"Начальный уровень":"Entry level"):b.category==="balanced"?(lang==="ru"?"Оптимальная сборка":"Balanced build"):(lang==="ru"?"Высокая производительность":"High performance")}</span></div><strong class="build-price">${money(b.price)}</strong></div>
         <p class="build-desc">${b.desc}</p><div class="spec-pills">${b.specs.map(s=>`<span>${s}</span>`).join("")}</div>
         <div class="build-footer"><small>${lang==="ru"?"Индекс FPS":"Performance index"}: ${b.score}/100</small><button data-use-build="${b.id}">${t("choose")} ↗</button></div>
+        <div class="build-contact-actions">
+          <a class="build-contact-link build-contact-telegram" href="https://t.me/framepcm" target="_blank" rel="noopener" data-contact-build="${b.id}">${lang==="ru"?"Написать в Telegram":"Message on Telegram"}</a>
+          <a class="build-contact-link build-contact-vk" href="https://vk.me/framepcm" target="_blank" rel="noopener" data-contact-build="${b.id}">${lang==="ru"?"Написать в VK":"Message on VK"}</a>
+        </div>
       </div>
     </article>`).join("");
-  $$("[data-use-build]").forEach(btn=>btn.addEventListener("click",()=>{
+  $$('[data-use-build]').forEach(btn=>btn.addEventListener("click",()=>{
     const b=builds.find(x=>x.id===Number(btn.dataset.useBuild));
-    $("#budgetRange").value=b.price; priority="fps"; $$("[data-priority]").forEach(x=>x.classList.toggle("selected",x.dataset.priority===priority));
+    $("#budgetRange").value=b.price; priority="fps"; $$('[data-priority]').forEach(x=>x.classList.toggle("selected",x.dataset.priority===priority));
     updateConfigurator(); location.hash="#configurator";
+  }));
+  $$('[data-contact-build]').forEach(link=>link.addEventListener("click",async()=>{
+    const b=builds.find(x=>x.id===Number(link.dataset.contactBuild));
+    const message=[
+      `Здравствуйте! Интересует готовая сборка ${b.name} от Frame PC.`,
+      `Цена: ${money(b.price)}.`,
+      `Конфигурация: ${b.specs.join(', ')}.`,
+      `Описание: ${b.desc}`,
+      'Подскажите, пожалуйста, актуальна ли цена и что входит в комплект?'
+    ].join('\n');
+    try {
+      await navigator.clipboard.writeText(message);
+      showToast(lang==="ru"?"Конфигурация и цена скопированы. Вставьте сообщение в чат.":"Build details and price copied. Paste the message into the chat.");
+    } catch (error) {
+      const field=document.createElement('textarea'); field.value=message; field.setAttribute('readonly','');
+      field.style.position='fixed'; field.style.opacity='0'; document.body.appendChild(field); field.select();
+      const copied=document.execCommand('copy'); field.remove();
+      showToast(copied?(lang==="ru"?"Конфигурация и цена скопированы. Вставьте сообщение в чат.":"Build details and price copied. Paste the message into the chat."):(lang==="ru"?"Не удалось скопировать автоматически. "+message:"Could not copy automatically. "+message));
+    }
   }));
 }
 function chooseItem(type,budget,usedAllowed){
@@ -143,10 +166,12 @@ $$("[data-priority]").forEach(btn=>btn.addEventListener("click",()=>{priority=bt
 $("#budgetRange").addEventListener("input",updateConfigurator);
 $$('input[name="market"]').forEach(el=>el.addEventListener("change",updateConfigurator));
 $("#languageToggle").addEventListener("click",()=>{lang=lang==="ru"?"en":"ru";applyLanguage();});
-$("#requestBuild").addEventListener("click",()=>{
-  const budget=$("#requestBuild").dataset.budget,total=$("#requestBuild").dataset.total;
-  const msg=lang==="ru"?`Выбрана демонстрационная сборка на ${money(Number(budget))}. Расчётная стоимость деталей: ${money(Number(total))}. Замените ссылку Telegram в файле index.html на свой контакт.`:`Selected demo build budget: ${money(Number(budget))}. Estimated parts cost: ${money(Number(total))}. Replace the Telegram link in index.html with your contact.`;
-  showToast(msg);
+$("#requestBuild").addEventListener("click",async()=>{
+  const budget=Number($("#requestBuild").dataset.budget),total=Number($("#requestBuild").dataset.total);
+  const parts=$$("#partsList .part-row").map(row=>`${row.querySelector('.part-info strong').textContent}: ${row.querySelector('.part-info span').textContent.split(' · ')[0]} — ${row.querySelector('.part-price').textContent}`);
+  const msg=[lang==="ru"?"Здравствуйте! Хочу обсудить сборку от Frame PC.":"Hello! I'd like to discuss a Frame PC build.",`${lang==="ru"?"Бюджет":"Budget"}: ${money(budget)}.`,`${lang==="ru"?"Расчётная стоимость комплектующих":"Estimated component total"}: ${money(total)}.`,`${lang==="ru"?"Конфигурация":"Configuration"}:`,...parts].join('\n');
+  try { await navigator.clipboard.writeText(msg); showToast(lang==="ru"?"Конфигурация скопирована. Откройте Telegram или VK в разделе контактов.":"Configuration copied. Open Telegram or VK in the contact section."); }
+  catch(error) { showToast(lang==="ru"?"Не удалось скопировать автоматически. Попробуйте ещё раз через HTTPS.":"Could not copy automatically. Please try again over HTTPS."); }
 });
 $("#menuToggle").addEventListener("click",()=>$("#nav").classList.toggle("open"));
 $$(".nav a").forEach(a=>a.addEventListener("click",()=>$("#nav").classList.remove("open")));
