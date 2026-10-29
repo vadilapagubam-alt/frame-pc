@@ -1,49 +1,22 @@
-const builds = [
-  {id:1, name:"Frame Start 50", price:50000, category:"budget", tag:"СТАРТ", fps:"1080p", desc:"Доступный вход в игровой ПК для популярных онлайн-игр.", specs:["Ryzen 5 5500","RTX 2060 / аналог","16 GB RAM"], glow:"#9d6cff", score:55},
-  {id:2, name:"Frame Core 60", price:60000, category:"budget", tag:"НАРАЩИВАЕМ FPS", fps:"1080p", desc:"Сбалансированный вариант для Full HD и повседневных задач.", specs:["Ryzen 5 5600","RTX 3060 / аналог","16 GB RAM"], glow:"#8c68f0", score:64},
-  {id:3, name:"Frame Pulse 70", price:70000, category:"balanced", tag:"ПОПУЛЯРНЫЙ", fps:"1080p HIGH", desc:"Уверенная производительность в современных играх.", specs:["Ryzen 5 5600","RTX 5060 / аналог","32 GB RAM"], glow:"#a78bfa", score:76},
-  {id:4, name:"Frame Nova 80", price:80000, category:"balanced", tag:"БАЛАНС", fps:"1440p READY", desc:"Запас по графике и памяти для более требовательных игр.", specs:["Ryzen 5 / Ryzen 7","RTX 5060 Ti / аналог","32 GB RAM"], glow:"#7c8cf8", score:83},
-  {id:5, name:"Frame Vector 90", price:90000, category:"power", tag:"БОЛЬШЕ МОЩНОСТИ", fps:"1440p", desc:"Для тех, кто хочет повысить качество графики и FPS.", specs:["Ryzen 7 / аналог","RTX 5070 / аналог","32 GB RAM"], glow:"#b18cff", score:89},
-  {id:6, name:"Frame Apex 100", price:100000, category:"power", tag:"ТОП В ЛИНЕЙКЕ", fps:"HIGH FPS", desc:"Максимум производительности в рамках выбранного бюджета.", specs:["Ryzen 7 / аналог","RTX 5070 / аналог","32 GB RAM"], glow:"#c084fc", score:94}
-];
-const components = {
-  cpu: [
-    {name:"Ryzen 5 5500", short:"6 ядер · AM4", price:6500, min:50000, priority:"fps"},
-    {name:"Ryzen 5 5600", short:"6 ядер · AM4", price:8500, min:60000, priority:"fps"},
-    {name:"Ryzen 7 5700X", short:"8 ядер · AM4", price:12500, min:80000, priority:"upgrade"},
-    {name:"Ryzen 5 7500F", short:"AM5 · платформа для апгрейда", price:14500, min:90000, priority:"upgrade"}
-  ],
-  board: [
-    {name:"A520M / аналог", short:"Базовая плата AM4", price:5000, min:50000, priority:"fps"},
-    {name:"B550M / аналог", short:"AM4 · больше возможностей", price:7000, min:60000, priority:"upgrade"},
-    {name:"B650M / аналог", short:"Платформа AM5", price:10500, min:90000, priority:"upgrade"}
-  ],
-  gpu: [
-    {name:"RTX 2060 / аналог", short:"Видеокарта · бюджетный сегмент", price:14000, used:true, min:50000, priority:"fps"},
-    {name:"RTX 3060 / аналог", short:"Видеокарта · Full HD", price:19000, used:true, min:60000, priority:"fps"},
-    {name:"RTX 5060 / аналог", short:"Видеокарта · новое поколение", price:27000, min:70000, priority:"fps"},
-    {name:"RTX 5060 Ti / аналог", short:"Больше графической мощности", price:35000, min:80000, priority:"fps"},
-    {name:"RTX 5070 / аналог", short:"Высокая производительность", price:43000, min:90000, priority:"fps"}
-  ],
-  ram: [
-    {name:"16 GB DDR4", short:"2 × 8 GB", price:3500, min:50000},
-    {name:"32 GB DDR4", short:"2 × 16 GB", price:6500, min:70000},
-    {name:"32 GB DDR5", short:"2 × 16 GB", price:8500, min:90000}
-  ],
-  storage: [
-    {name:"SSD NVMe 512 GB", short:"M.2 NVMe", price:3000, min:50000},
-    {name:"SSD NVMe 1 TB", short:"M.2 NVMe", price:5000, min:60000}
-  ],
-  psu: [
-    {name:"БП 550 W", short:"Подходящий класс мощности", price:4000, min:50000},
-    {name:"БП 650 W", short:"Запас для производительной сборки", price:5500, min:70000},
-    {name:"БП 750 W", short:"Запас для более мощной видеокарты", price:7000, min:90000}
-  ],
-  case: [
-    {name:"Корпус Airflow", short:"Вентиляция и базовый дизайн", price:3500, min:50000},
-    {name:"Панорамный ARGB", short:"Стекло и подсветка", price:5000, min:60000}
-  ]
-};
+// Каталог загружается отдельно из products.json. Цены и названия меняются в этом файле.
+let builds = [];
+let components = {};
+async function loadCatalog(){
+  try {
+    const response = await fetch("products.json", { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const catalog = await response.json();
+    if (!Array.isArray(catalog.builds) || !catalog.components) throw new Error("Неверный формат products.json");
+    builds = catalog.builds;
+    components = catalog.components;
+    renderBuilds();
+    updateConfigurator();
+  } catch (error) {
+    console.error("Не удалось загрузить products.json:", error);
+    const grid = document.querySelector("#buildGrid");
+    if (grid) grid.innerHTML = '<p class="demo-note">Не удалось загрузить каталог. Проверь, что файл products.json находится рядом с index.html и сайт открыт через GitHub Pages или локальный сервер.</p>';
+  }
+}
 const translations = {
   ru: {
     navBuilds:"Сборки",navConfig:"Конфигуратор",navAbout:"Почему Frame",navContact:"Связаться",
@@ -178,4 +151,4 @@ $("#requestBuild").addEventListener("click",()=>{
 $("#menuToggle").addEventListener("click",()=>$("#nav").classList.toggle("open"));
 $$(".nav a").forEach(a=>a.addEventListener("click",()=>$("#nav").classList.remove("open")));
 $("#year").textContent=new Date().getFullYear();
-renderBuilds();updateConfigurator();
+loadCatalog();
