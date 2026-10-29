@@ -32,7 +32,7 @@ const translations = {
     budgetLabel:"Бюджет",priorityLabel:"Главный приоритет",priorityFps:"Максимум FPS",priorityFpsSub:"Больше кадров в играх",priorityUpgrade:"Апгрейд в будущем",priorityUpgradeSub:"Платформа с запасом",priorityWhite:"Белая эстетика",priorityWhiteSub:"Стильный внешний вид",marketLabel:"Предпочтение по деталям",marketNew:"Только новые",marketMixed:"Новые + б/у видеокарта",marketHint:"Пока это демонстрационный расчёт — реальные предложения ещё не подключены.",
     resultLabel:"ТВОЯ СБОРКА",compatibleDemo:"Демо-совместимость",performanceIndex:"Индекс производительности",estimatedTotal:"Ориентировочная стоимость",deliveryHint:"Без доставки и сборки",requestBuild:"Запросить эту сборку",resultDisclaimer:"Цены, индекс и совместимость условные. Не являются реальным предложением к покупке.",
     processEyebrow:"ПРОСТО И ПОНЯТНО",processTitle:'От идеи до <span class="gradient-text">игры.</span>',step1Title:"Выбираем",step1Text:"Определяем бюджет, игры и желаемую производительность.",step2Title:"Собираем",step2Text:"Подбираем совместимые детали и согласовываем конфигурацию.",step3Title:"Тестируем",step3Text:"Проверяем работу ПК и фиксируем результат сборки.",step4Title:"Отправляем",step4Text:"Передаём готовый компьютер и помогаем после покупки.",
-    contactEyebrow:"НАЧНЁМ?",contactTitle:"Твой ПК. Твои правила.",contactText:"Расскажи, во что играешь и какой у тебя бюджет. Поможем подобрать конфигурацию.",contactCta:"Написать в Telegram",footerText:"Игровые ПК с фокусом на производительности.",footerRights:"Все права защищены.",
+    contactEyebrow:"НАЧНЁМ?",contactTitle:"Твой ПК. Твои правила.",contactText:"Расскажи, во что играешь и какой у тебя бюджет. Поможем подобрать конфигурацию.",contactCta:"Написать в Telegram",contactVk:"Написать в VK",footerText:"Игровые ПК с фокусом на производительности.",footerRights:"Все права защищены.",
     cpu:"Процессор",board:"Материнская плата",gpu:"Видеокарта",ram:"Оперативная память",storage:"Накопитель",psu:"Блок питания",case:"Корпус",
     fpsDescription:"Приоритет — игровая производительность.",upgradeDescription:"Приоритет — платформа с возможностью апгрейда.",whiteDescription:"Приоритет — внешний вид и белая эстетика.",
     selected:"Выбрано",choose:"Использовать сборку",toastRequest:"Заявка пока не отправляется: укажи свой Telegram в настройках сайта.",marketUsed:"б/у вариант",marketNewTag:"новый вариант",overBudget:"Выше бюджета",underBudget:"В рамках бюджета",totalParts:"Комплектующие"
@@ -51,7 +51,7 @@ const translations = {
     budgetLabel:"Budget",priorityLabel:"Main priority",priorityFps:"Maximum FPS",priorityFpsSub:"More frames in games",priorityUpgrade:"Future upgrades",priorityUpgradeSub:"Room to grow",priorityWhite:"White aesthetic",priorityWhiteSub:"A clean, stylish look",marketLabel:"Component preference",marketNew:"New only",marketMixed:"New + used GPU",marketHint:"This is a demo calculation. Live marketplace offers are not connected yet.",
     resultLabel:"YOUR BUILD",compatibleDemo:"Demo compatibility",performanceIndex:"Performance index",estimatedTotal:"Estimated price",deliveryHint:"Excludes shipping and assembly",requestBuild:"Request this build",resultDisclaimer:"Prices, score and compatibility are illustrative, not a real offer to purchase.",
     processEyebrow:"SIMPLE PROCESS",processTitle:'From idea to <span class="gradient-text">game.</span>',step1Title:"Choose",step1Text:"Set your budget, games and target performance.",step2Title:"Build",step2Text:"Select compatible parts and confirm the configuration.",step3Title:"Test",step3Text:"Test the PC and document the completed build.",step4Title:"Deliver",step4Text:"Receive your PC and get help after purchase.",
-    contactEyebrow:"LET'S START",contactTitle:"Your PC. Your rules.",contactText:"Tell us what you play and your budget. We'll help choose a configuration.",contactCta:"Message on Telegram",footerText:"Gaming PCs focused on performance.",footerRights:"All rights reserved.",
+    contactEyebrow:"LET'S START",contactTitle:"Your PC. Your rules.",contactText:"Tell us what you play and your budget. We'll help choose a configuration.",contactCta:"Message on Telegram",contactVk:"Message on VK",footerText:"Gaming PCs focused on performance.",footerRights:"All rights reserved.",
     cpu:"CPU",board:"Motherboard",gpu:"Graphics card",ram:"Memory",storage:"Storage",psu:"Power supply",case:"Case",
     fpsDescription:"Priority: gaming performance.",upgradeDescription:"Priority: a platform with upgrade options.",whiteDescription:"Priority: appearance and a white aesthetic.",
     selected:"Selected",choose:"Use this build",toastRequest:"Request form is not connected yet. Set your Telegram link in the site settings.",marketUsed:"used option",marketNewTag:"new option",overBudget:"Over budget",underBudget:"Within budget",totalParts:"Components"
@@ -83,8 +83,8 @@ function renderBuilds(){
         <p class="build-desc">${b.desc}</p><div class="spec-pills">${b.specs.map(s=>`<span>${s}</span>`).join("")}</div>
         <div class="build-footer"><small>${lang==="ru"?"Индекс FPS":"Performance index"}: ${b.score}/100</small><button data-use-build="${b.id}">${t("choose")} ↗</button></div>
         <div class="build-contact-actions">
-          <a class="build-contact-link build-contact-telegram" href="https://t.me/framepcm" target="_blank" rel="noopener" data-contact-build="${b.id}">${lang==="ru"?"Написать в Telegram":"Message on Telegram"}</a>
-          <a class="build-contact-link build-contact-vk" href="https://vk.me/framepcm" target="_blank" rel="noopener" data-contact-build="${b.id}">${lang==="ru"?"Написать в VK":"Message on VK"}</a>
+          <a class="build-contact-link build-contact-telegram" href="https://t.me/framepcm" target="_blank" rel="noopener" data-contact-build="${b.id}" data-contact-platform="telegram">${lang==="ru"?"Написать в Telegram":"Message on Telegram"}</a>
+          <a class="build-contact-link build-contact-vk" href="https://vk.me/framepcm" target="_blank" rel="noopener" data-contact-build="${b.id}" data-contact-platform="vk">${lang==="ru"?"Написать в VK":"Message on VK"}</a>
         </div>
       </div>
     </article>`).join("");
@@ -95,21 +95,39 @@ function renderBuilds(){
   }));
   $$('[data-contact-build]').forEach(link=>link.addEventListener("click",async()=>{
     const b=builds.find(x=>x.id===Number(link.dataset.contactBuild));
-    const message=[
-      `Здравствуйте! Интересует готовая сборка ${b.name} от Frame PC.`,
-      `Цена: ${money(b.price)}.`,
-      `Конфигурация: ${b.specs.join(', ')}.`,
+    if(!b) return;
+    const message = lang === "ru" ? [
+      `Здравствуйте! Хочу узнать подробнее о готовой сборке «${b.name}».`,
+      `Цена на сайте: ${money(b.price)}.`,
+      "Комплектующие:",
+      ...b.specs.map((part, i) => `${i + 1}. ${part}`),
       `Описание: ${b.desc}`,
-      'Подскажите, пожалуйста, актуальна ли цена и что входит в комплект?'
-    ].join('\n');
+      "Подскажите, пожалуйста, актуальна ли цена и как оформить заказ."
+    ].join("\n") : [
+      `Hello! I'm interested in the ready-made build “${b.name}”.`,
+      `Price on the website: ${money(b.price)}.`,
+      "Components:",
+      ...b.specs.map((part, i) => `${i + 1}. ${part}`),
+      `Description: ${b.desc}`,
+      "Could you confirm the current price and explain how to order?"
+    ].join("\n");
+    const platform = link.dataset.contactPlatform;
+    // Telegram supports a prefilled draft via the text parameter. VK does not expose a reliable
+    // cross-device public parameter for pre-filling a message in a profile chat.
+    if(platform === "telegram") link.href = `https://t.me/framepcm?text=${encodeURIComponent(message)}`;
+    else link.href = "https://vk.me/framepcm";
     try {
       await navigator.clipboard.writeText(message);
-      showToast(lang==="ru"?"Конфигурация и цена скопированы. Вставьте сообщение в чат.":"Build details and price copied. Paste the message into the chat.");
+      showToast(platform === "telegram"
+        ? (lang === "ru" ? "Сообщение скопировано и подготовлено в Telegram." : "Message copied and prepared in Telegram.")
+        : (lang === "ru" ? "Конфигурация скопирована. В чате VK вставьте её в поле сообщения." : "Build details copied. Paste them into the VK chat."));
     } catch (error) {
       const field=document.createElement('textarea'); field.value=message; field.setAttribute('readonly','');
       field.style.position='fixed'; field.style.opacity='0'; document.body.appendChild(field); field.select();
       const copied=document.execCommand('copy'); field.remove();
-      showToast(copied?(lang==="ru"?"Конфигурация и цена скопированы. Вставьте сообщение в чат.":"Build details and price copied. Paste the message into the chat."):(lang==="ru"?"Не удалось скопировать автоматически. "+message:"Could not copy automatically. "+message));
+      showToast(copied
+        ? (lang === "ru" ? "Сообщение скопировано." : "Message copied.")
+        : (lang === "ru" ? "Не удалось скопировать. Скопируйте текст вручную: " + message : "Could not copy. Copy this text manually: " + message));
     }
   }));
 }

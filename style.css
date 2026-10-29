@@ -30,27 +30,9 @@ img,svg,video,canvas{max-width:100%;}
   .part-info span{overflow-wrap:anywhere;}
   .result-total>strong{font-size:clamp(19px,6vw,24px);}
 }
-html,
-body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: clip;
-}
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-img,
-video,
-iframe {
-  max-width: 100%;
-}
-
-@media (max-width: 768px) {
-  body {
-    touch-action: pan-y pinch-zoom;
-  }
-}
+/* Contact options: Telegram and VK */
+.contact-socials{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap;min-width:0}
+.contact-socials .button{white-space:normal}
+.button-secondary{background:rgba(255,255,255,.045);border:1px solid rgba(199,174,255,.42);color:#f4edff}
+@media(max-width:640px){.contact-socials{width:100%;justify-content:stretch}.contact-socials .button{flex:1 1 100%;justify-content:center;min-width:0}}
